@@ -9,12 +9,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var num1:Int
+    @ObservedObject var num2:Int
+    @ObservedObject var result: String
+    @ObservedObject var temp: String
+
     var body: some View {
         VStack(spacing: 16){
-        Text("0").font(.system(size: 80))
-        CalulatorPad()
+            Spacer()
+            Text(result).font(.system(size: 30))
+            CalulatorPad()
         }
     }
+    
 }
 
 
@@ -42,6 +49,8 @@ struct CalculatorButtonRow: View {
             ForEach(row, id: \.self){item in
                 CalculatorButton(title: item.title){
                     print("buttom: \(item.title)")
+                    result = item.title
+                    
                 }
             }
         }

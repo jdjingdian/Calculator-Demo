@@ -16,6 +16,7 @@
 		E4DF59FA24DA88D100FD6414 /* Calculator_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF59F924DA88D100FD6414 /* Calculator_DemoTests.swift */; };
 		E4DF5A0524DA88D100FD6414 /* Calculator_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF5A0424DA88D100FD6414 /* Calculator_DemoUITests.swift */; };
 		E4DF5A1324DA8D7000FD6414 /* CalculatorButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF5A1224DA8D7000FD6414 /* CalculatorButtonItem.swift */; };
+		E4DF5A1524DAA74A00FD6414 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF5A1424DAA74A00FD6414 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		E4DF5A0424DA88D100FD6414 /* Calculator_DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator_DemoUITests.swift; sourceTree = "<group>"; };
 		E4DF5A0624DA88D100FD6414 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4DF5A1224DA8D7000FD6414 /* CalculatorButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonItem.swift; sourceTree = "<group>"; };
+		E4DF5A1424DAA74A00FD6414 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				E4DF59F024DA88D100FD6414 /* Info.plist */,
 				E4DF59EA24DA88D100FD6414 /* Preview Content */,
 				E4DF5A1224DA8D7000FD6414 /* CalculatorButtonItem.swift */,
+				E4DF5A1424DAA74A00FD6414 /* Model.swift */,
 			);
 			path = "Calculator Demo";
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4DF5A1524DAA74A00FD6414 /* Model.swift in Sources */,
 				E4DF59E324DA88CE00FD6414 /* AppDelegate.swift in Sources */,
 				E4DF59E524DA88CE00FD6414 /* SceneDelegate.swift in Sources */,
 				E4DF5A1324DA8D7000FD6414 /* CalculatorButtonItem.swift in Sources */,
