@@ -29,3 +29,13 @@ extension CalculatorButtonItem : Hashable{
         }
     }
 }
+
+
+enum OpCu: String{
+    case plus = "+"
+    case minus = "-"
+    case divide = "÷"
+    case multiply = "×"
+    case equal = "="
+    case clean = "AC"
+}

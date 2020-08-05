@@ -9,19 +9,81 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var num1:Int
-    @ObservedObject var num2:Int
-    @ObservedObject var result: String
-    @ObservedObject var temp: String
-
+    @State var display = "0"
     var body: some View {
         VStack(spacing: 16){
-            Spacer()
-            Text(result).font(.system(size: 30))
-            CalulatorPad()
+            //            Spacer()
+            Text(display).font(.system(size: 80))
+            //            CalulatorPad()
+            HStack(spacing: 16){
+                CalcPadNums(display: $display)
+                Operator(display: $display)
+            }
         }
+        
     }
     
+}
+
+
+struct CalcPadNums: View {
+    @Binding var display : String
+    let pad = [
+        [7, 8, 9],
+    [4, 5, 6],
+    [1, 2, 3],
+    [0]]
+    var body: some View {
+        VStack(spacing: 8){
+            ForEach(pad, id:\.self){row in
+                HStack(spacing: 8){
+                    ForEach(row, id: \.self){ digit in
+                        Button("\(digit)", action: {
+                            print("digit \(digit) pressed")
+                            self.display.append(String(digit))
+                        })
+                        .frame(width: 100, height: 100)
+                        .background(Color.orange)
+                        .foregroundColor(.white)
+                        .font(.system(size: 38, weight: .bold))
+                        .cornerRadius(50)
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct Operator : View{
+    @Binding var display:String
+    let opCu:[[OpCu]] = [
+        [.clean, .plus, .minus , .multiply ,.divide],
+        [.equal]
+    ]
+    var body: some View {
+        HStack(spacing:8){
+            ForEach(opCu, id: \.self){rows in
+                VStack(spacing: 8){
+                    ForEach(rows, id: \.self){ op in
+                        Button(op.rawValue ,action: {
+                            print("op \(op) pressed")
+                            self.display = "0"
+                        })
+                        .frame(width: 100, height: 100)
+                        .background(Color.orange)
+                        .foregroundColor(.white)
+                        .font(.system(size: 38, weight: .bold))
+                        .cornerRadius(50)
+                        
+                    }
+                }
+                
+                
+            }
+            
+        }
+    }
 }
 
 
@@ -49,7 +111,6 @@ struct CalculatorButtonRow: View {
             ForEach(row, id: \.self){item in
                 CalculatorButton(title: item.title){
                     print("buttom: \(item.title)")
-                    result = item.title
                     
                 }
             }
