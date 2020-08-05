@@ -40,7 +40,12 @@ struct CalcPadNums: View {
                     ForEach(row, id: \.self){ digit in
                         Button("\(digit)", action: {
                             print("digit \(digit) pressed")
-                            self.display.append(String(digit))
+                            if(self.display == "0"){
+                                self.display = String(digit)
+                            }else{
+                                self.display.append(String(digit))
+                            }
+                            
                         })
                         .frame(width: 100, height: 100)
                         .background(Color.orange)
@@ -68,7 +73,10 @@ struct Operator : View{
                     ForEach(rows, id: \.self){ op in
                         Button(op.rawValue ,action: {
                             print("op \(op) pressed")
-                            self.display = "0"
+                            if(op.rawValue == "AC"){
+                                self.display = "0"
+                            }
+                            
                         })
                         .frame(width: 100, height: 100)
                         .background(Color.orange)
@@ -78,13 +86,11 @@ struct Operator : View{
                         
                     }
                 }
-                
-                
             }
-            
         }
     }
 }
+
 
 
 struct CalulatorPad: View {
