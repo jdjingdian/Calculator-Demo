@@ -9,25 +9,22 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var display = "0"
+    @EnvironmentObject var calcModel : CalculatorViewModel
     var body: some View {
         VStack(spacing: 16){
-            //            Spacer()
-            Text(display).font(.system(size: 80))
-            //            CalulatorPad()
+            Text(calcModel.display).font(.system(size: 80))
             HStack(spacing: 16){
-                CalcPadNums(display: $display)
-                Operator(display: $display)
+                CalcPadNums()
+                Operator()
             }
         }
-        
     }
     
 }
 
 
 struct CalcPadNums: View {
-    @Binding var display : String
+    @EnvironmentObject var calcModel : CalculatorViewModel
     let pad = [
         [7, 8, 9],
     [4, 5, 6],
@@ -40,10 +37,12 @@ struct CalcPadNums: View {
                     ForEach(row, id: \.self){ digit in
                         Button("\(digit)", action: {
                             print("digit \(digit) pressed")
-                            if(self.display == "0"){
-                                self.display = String(digit)
+                            if(self.calcModel.typInMiddle){
+                                self.calcModel.display.append(String(digit))
+                                
                             }else{
-                                self.display.append(String(digit))
+                                self.calcModel.display = String(digit)
+                                self.calcModel.typInMiddle = true
                             }
                             
                         })
@@ -61,7 +60,7 @@ struct CalcPadNums: View {
 }
 
 struct Operator : View{
-    @Binding var display:String
+    @EnvironmentObject var calcModel : CalculatorViewModel
     let opCu:[[OpCu]] = [
         [.clean, .plus, .minus , .multiply ,.divide],
         [.equal]
@@ -74,7 +73,8 @@ struct Operator : View{
                         Button(op.rawValue ,action: {
                             print("op \(op) pressed")
                             if(op.rawValue == "AC"){
-                                self.display = "0"
+                                self.calcModel.display = "0"
+                                self.calcModel.typInMiddle = false
                             }
                             
                         })
@@ -124,11 +124,6 @@ struct CalculatorButtonRow: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
 
 struct CalculatorButton: View {
     let fontSize: CGFloat = 68
@@ -144,5 +139,13 @@ struct CalculatorButton: View {
                 .background(Color.orange)
                 .cornerRadius(50)
         }
+    }
+}
+
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView().environmentObject(CalculatorViewModel())
     }
 }
